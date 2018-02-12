@@ -27,3 +27,9 @@ There are two classifier are provided:
 > classifier_2_v2.py : This classifier before classification divide dataset into 2 sets i.e. grain/not_grain, where grain contain 'Grain' class and not_grain contain all other class(Damaged_grain, Foreign, Broken_grain, Grain_cover) given above. 
 
 > classifier_5_v2.py : This classifier before classification divides dataset into 5 sets i.e. the above given classes.
+
+To see classification results run the following:
+
+> python classifier_2_v2.py     or
+
+> python classifier_5_v2.py
