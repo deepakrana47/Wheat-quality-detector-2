@@ -37,8 +37,8 @@ ECCENTRICITY = 7
 features = {0:'MEAN_AREA', 1:'PERIMETER', 2:'R', 3:'B', 4:'G', 5:'EIGEN_VALUE_1', 6:'EIGEN_VALUE_2', 7:'ECCENTRICITY', 8:'NUMBER_GRAIN',}
 #########################################
 
-data_dir = '/media/zero/41FF48D81730BD9B/kisannetwork/dataset5_dep_on_4/'
-result_dir = '/media/zero/41FF48D81730BD9B/kisannetwork/codes_v2/weights_results_2out/'
+data_dir = './dataset5_dep_on_4/'
+result_dir = './weights_results_2out/'
 
 if __name__ == "__main__":
     ftrain = []
