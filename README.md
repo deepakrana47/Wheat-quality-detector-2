@@ -1,6 +1,6 @@
 # Wheat-quality-detector-2
 
-In the wheat quality detection test we already segmented the wheat grains out of dataset provided in form of images containing multiple wheat grain in one picture by(https://github.com/dhishku/Machine-Learning-for-Grain-Assaying). The extracted wheat grains and other particals are than divided in five groups as follows:
+In the wheat quality detection test we already segmented the wheat grains out of dataset provided in form of images containing multiple wheat grain in one picture by(https://github.com/dhishku/Machine-Learning-for-Grain-Assaying). The extracted wheat grains and other particals are than divided in five classes as follows:
 
 >> Grain :- Contains the healthy wheat grains.
 
@@ -21,3 +21,9 @@ The classifier is written in python, to run the codes python 2.7 and following p
 > opencv (python package)
 
 > Keras (python package
+
+There are two classifier are provided:
+
+> classifier_2_v2.py : This classifier before classification divide dataset into 2 sets i.e. grain/not_grain, where grain contain 'Grain' class and not_grain contain all other class(Damaged_grain, Foreign, Broken_grain, Grain_cover) given above. 
+
+> classifier_5_v2.py : This classifier before classification divides dataset into 5 sets i.e. the above given classes.
