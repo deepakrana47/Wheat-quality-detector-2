@@ -8,7 +8,7 @@ def make_model(input_shape, out_shape):
     # model.add(Dropout(0.5))
     model.add(Dense(32, activation='relu'))
     model.add(Dense(out_shape, activation='softmax'))
-    model.compile(loss=keras.losses.binary_crossentropy, optimizer=keras.optimizers.adam(lr=0.001), metrics=['accuracy'])
+    model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.adam(lr=0.001), metrics=['accuracy'])
     return model
 
 def classify(model, inp):
@@ -23,7 +23,7 @@ def train(x, y, modelf=None):
         model = keras.models.load_model(modelf)
     else:
         batch_size = 100
-        epochs = 1000
+        epochs = 2000
         model = make_model(x[0].shape[0], y[0].shape[0])
         # model.summary()
         # if raw_input("y to continue: ") == 'y': pass
