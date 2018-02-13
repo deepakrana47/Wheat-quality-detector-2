@@ -30,6 +30,40 @@ There are two classifier are provided:
 
 To see classification results run the following:
 
-> python classifier_2_v2.py     or
+> $ python classifier_2_v2.py     or
 
-> python classifier_5_v2.py
+> $ python classifier_5_v2.py
+
+To test quality detection:
+
+> $ python cmd_wheat_quality_detector_v2.py
+
+Output
+
+> Enter the file(wheat image) location to dectect : test.jpg
+
+> Segmentation in process...
+
+>	0 Number of segment rejected out of 204 in L1 segmentation
+
+> Level 2 seg. start 1.50203704834e-05
+
+> 2nd Level of segmentation Finished 61.4671521187
+
+> 	In level 2 segmentation 24 rejected
+
+> 	Total number of segments 257
+
+> 	Number of rejected segments 24
+
+> Segmentation in Complete.
+
+> Feature extraction in process...
+
+> Featur extraction in complete.
+
+> Key Error
+
+> Number of good grain : 183
+
+> Number Not good grain or imputity: 49
