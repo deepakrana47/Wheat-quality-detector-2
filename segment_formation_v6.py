@@ -32,6 +32,7 @@ def segment_image4(img_file, dlog=0):
     img=org.copy()
     # print "Reading ",time.time()-t0
     t0 = time.time()
+    
     # removing noise by using Non-local Means Denoising algorithm
     img = cv2.fastNlMeansDenoisingColored(img,None,10,10,7,21)
     # cv2.imshow('cleaned',img)
@@ -48,10 +49,10 @@ def segment_image4(img_file, dlog=0):
     t0 = time.time()
 
     # incresing contrast about the threshold
-    gray = np.array([[max(pixel - 25, 0) if pixel < T else min(pixel + 25, 255) for pixel in row] for row in gray], dtype=np.uint8)
+    # gray = np.array([[max(pixel - 25, 0) if pixel < T else min(pixel + 25, 255) for pixel in row] for row in gray], dtype=np.uint8)
     # cv2.imshow('contrast',gray)
     # print "Increasing contrast ",time.time()-t0
-    t0 = time.time()
+    # t0 = time.time()
 
     # generating a threshold image
     thresh = np.array([[0 if pixel<T else 255 for pixel in row]for row in gray], dtype=np.uint8)
