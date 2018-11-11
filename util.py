@@ -1,6 +1,5 @@
 import numpy as np, cv2, os
 
-
 color = {i: np.random.randint(20, 255, 3) for i in range(3, 100000)}
 color[1] = [255, 255, 255]
 color[2] = [0, 0, 255]
@@ -349,3 +348,27 @@ def get_files(indir):
         else:
             files.append(f)
     return files
+
+def otsu_threshold(gray):
+    h, w = gray.shape
+    count = {i: 0 for i in range(256)}
+    for i in range(h):
+        for j in range(w):
+            count[gray[i, j]] += 1
+    prob = np.array([count[i] / float(h * w) for i in sorted(count)])
+    means = np.array([prob[i] * (i + 1) for i in count])
+    mean = np.sum(means)
+    minvar = -np.inf
+    minT = 0
+    for t in range(256):
+        w1 = np.sum([i for i in prob[:t + 1]])
+        w2 = 1.0 - w1
+        if not w1 or not w2: continue
+        m1 = np.sum([i for i in means[:t + 1]])
+        mean1 = m1 / w1
+        mean2 = (mean - m1) / w2
+        bcvar = w1 * w2 * (mean2 - mean1) ** 2
+        if bcvar > minvar:
+            minvar = bcvar
+            minT = t
+    return minT

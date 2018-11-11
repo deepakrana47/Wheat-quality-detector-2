@@ -37,8 +37,8 @@ ECCENTRICITY = 7
 features = {0:'MEAN_AREA', 1:'PERIMETER', 2:'R', 3:'B', 4:'G', 5:'EIGEN_VALUE_1', 6:'EIGEN_VALUE_2', 7:'ECCENTRICITY', 8:'NUMBER_GRAIN',}
 #########################################
 
-data_dir = './dataset5_dep_on_4/'
-result_dir = './weights_results_5out/'
+data_dir = 'dataset5_dep_on_4/'
+result_dir = 'weights_results_5out/'
 
 if __name__ == "__main__":
     ftrain = []
@@ -148,6 +148,7 @@ if __name__ == "__main__":
         else:
             model = train(np.array(ftrain)[:,feat], np.array(y_train), modelf=modleFile)
             model.save(modleFile)
+            print "Model file is saved !!"
         score = model.evaluate(np.array(ftest)[:,feat], np.array(y_test))
         print('MLP Test loss:', score[0])
         print('MLP Test accuracy:', score[1])

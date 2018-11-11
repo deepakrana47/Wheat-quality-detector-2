@@ -1,15 +1,19 @@
-import cv2, numpy as np
-from codes.threshold import otsu_threshold
-from Area import areaThreshold_by_havg, areaThreshold_by_avg
+import warnings
+# warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+# warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+warnings.simplefilter("ignore", DeprecationWarning)
+
+from threshold import otsu_threshold
+from Area import areaThreshold_by_havg#, areaThreshold_by_avg
 from _8connected import get_8connected_v2
-import traceback, keras, os
+import keras
 from util import *
 from L2_Segmentation_v5 import L2_segmentation_2
 import time
 
-mFile = '/media/zero/41FF48D81730BD9B/kisannetwork/codes/segmentation/weights_30_30_.pkl'
+mFile = 'segmentation_data/weights_30_30_.h5'
 model = keras.models.load_model(mFile)
-rm_detail = open('/media/zero/41FF48D81730BD9B/kisannetwork/removed/v5_log.txt', 'a')
+rm_detail = open('log.txt', 'a')
 
 def isMoregrain(iimg, T):
     iimg = generate_newcolorimg_by_padding(iimg, 30, 30)[:, :, 2]

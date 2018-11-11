@@ -1,4 +1,12 @@
 Featrues: ['MEAN_AREA', 'PERIMETER', 'R', 'B', 'G', 'EIGEN_VALUE_1', 'EIGEN_VALUE_2', 'ECCENTRICITY']
-MLP Test loss: 0.249790
-MLP Test accuracy: 0.902913
+MLP Test loss: 0.246875
+MLP Test accuracy: 0.902450
+
+Featrues: ['MEAN_AREA', 'PERIMETER', 'R', 'B', 'G', 'EIGEN_VALUE_1', 'EIGEN_VALUE_2', 'ECCENTRICITY']
+MLP Test loss: 0.246875
+MLP Test accuracy: 0.902450
+
+Featrues: ['MEAN_AREA', 'PERIMETER', 'R', 'B', 'G', 'EIGEN_VALUE_1', 'EIGEN_VALUE_2', 'ECCENTRICITY']
+MLP Test loss: 0.241399
+MLP Test accuracy: 0.907536
 

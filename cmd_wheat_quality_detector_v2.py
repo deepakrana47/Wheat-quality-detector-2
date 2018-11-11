@@ -1,9 +1,13 @@
-from segment_formation_v6 import segment_image4
+## this file contain code for binary classification i.e. good or not good grain
+
+import warnings
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+
 from util import display_mask, get_boundry_img_matrix
 from PCA import pca
 import numpy as np, keras, cv2
-import warnings
-warnings.filterwarnings('error')
+from segment_formation_v6 import segment_image4
 
 if __name__ == "__main__":
     color = {i: np.random.randint(20, 255, 3) for i in range(5, 5000)}
@@ -37,7 +41,7 @@ if __name__ == "__main__":
         eccentricity = eigen_value[0] / eigen_value[1]
         l = [mean_area, boundry, r, b, g, eigen_value[0], eigen_value[1], eccentricity]
         features[gi] = np.array(l)
-    print "Featur extraction in complete."
+    print "Feature extraction in complete."
 
     out = {}
     for i in features:
@@ -68,5 +72,5 @@ if __name__ == "__main__":
     outFile = 'result_'+imgFile.split('/')[-1]
     cv2.imwrite(outFile, rect)
     display_mask('mask',mask,sname=maskFile)
+    cv2.waitKey(0)
     count+=1
-

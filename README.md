@@ -16,11 +16,11 @@ The dataset is already preprocessed through programming and manually. These five
 
 The classifier is written in python, to run the codes python 2.7 and following packages are to be installed:
 
-> numpy (python package)
+> numpy==1.15.4
 
-> opencv (python package)
+> opencv==3.4.0.12
 
-> Keras (python package
+> Keras==2.1.2
 
 There are two classifier are provided:
 

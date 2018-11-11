@@ -1,11 +1,11 @@
 import cv2, numpy as np
-from codes.Area import areaThreshold_by_havg, areaThreshold_by_top
-from codes.threshold import otsu_threshold
+from Area import areaThreshold_by_havg, areaThreshold_by_top
+from threshold import otsu_threshold
 from _8connected import get_8connected_v2
 from util import *
 import warnings
 import traceback
-from codes.eclipes_test import elliptic_fourier_descriptors,efd
+from eclipes_test import elliptic_fourier_descriptors, efd
 warnings.filterwarnings("error")
 import time
 color = {i: np.random.randint(20, 255, 3) for i in range(5, 5000)}
