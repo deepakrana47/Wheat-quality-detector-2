@@ -137,7 +137,7 @@ if __name__ == "__main__":
         # feat = [i for i in m]
         # for i in n: feat += i
         print 'Paremeters :', [features[i] for i in feat]," ##### Number of classes :", [i for i in grain_class]
-        modleFile = result_dir + 'weights_'+''.join([str(i) for i in feat])+'.pkl'
+        modleFile = result_dir + 'weights_'+''.join([str(i) for i in feat])+'.h5'
         if os.path.isfile(modleFile):
             model = keras.models.load_model(modleFile)
         else:
