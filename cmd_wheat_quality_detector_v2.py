@@ -13,20 +13,20 @@ if __name__ == "__main__":
     color = {i: np.random.randint(20, 255, 3) for i in range(5, 5000)}
     color[1] = [255, 255, 255]
     color[2] = [0, 0, 255]
-    imgFile =  raw_input("Enter the file(wheat image) location to dectect : ")
+    imgFile =  input("Enter the file(wheat image) location to dectect : ")
     # imgFile = 'test.jpg'
     count = 1
 
     model = keras.models.load_model('weights_results_2out/weights_01234567.pkl')
 
     # for imgFile in imgFile:
-    print "Segmentation in process..."
+    print("Segmentation in process...")
     segments, segLocation, _, mask= segment_image4(imgFile)
-    print "Segmentation in Complete."
+    print("Segmentation in Complete.")
 
 
     features = {}
-    print "Feature extraction in process..."
+    print("Feature extraction in process...")
     for gi in segments:
         gcolor = segments[gi]
         h, w, _ = gcolor.shape
@@ -41,7 +41,7 @@ if __name__ == "__main__":
         eccentricity = eigen_value[0] / eigen_value[1]
         l = [mean_area, boundry, r, b, g, eigen_value[0], eigen_value[1], eccentricity]
         features[gi] = np.array(l)
-    print "Feature extraction in complete."
+    print("Feature extraction in complete.")
 
     out = {}
     for i in features:
@@ -53,7 +53,7 @@ if __name__ == "__main__":
         try:
             s = segLocation[i]
         except KeyError:
-            print "Key Error"
+            print("Key Error")
             continue
         if np.argmax(out[i][0]) == 0:
             good += 1
@@ -61,8 +61,8 @@ if __name__ == "__main__":
         else:
             not_good+=1
             rect = cv2.rectangle(rect, (s[2], s[0]), (s[3], s[1]), (0, 0, 255), 3)
-    print "Number of good grain :", good
-    print "Number Not good grain or imputity:", not_good
+    print("Number of good grain :", good)
+    print("Number Not good grain or imputity:", not_good)
 
     font = cv2.FONT_HERSHEY_SIMPLEX
     h, w, _ = rect.shape

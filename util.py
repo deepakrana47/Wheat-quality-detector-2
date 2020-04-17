@@ -68,7 +68,7 @@ def remove_padding2D_zero(matrix, num):
 
 def generate_newcolorimg_by_padding(img, newh, neww):
     h,w = img.shape[0:2]
-    # print "original size:", img.shape[0:2],
+    # print("original size:", img.shape[0:2],)
     if h > newh or w > neww:
         if h > newh and w > neww:
             if newh*w/h > neww:
@@ -82,7 +82,7 @@ def generate_newcolorimg_by_padding(img, newh, neww):
         img = cv2.resize(img, dim, interpolation=cv2.INTER_CUBIC)
 
     h,w,c = img.shape
-    # print "after resize:",img.shape[0:2],
+    # print("after resize:",img.shape[0:2],)
     h0 = newh - h
     w0 = neww - w
     h1 = int(h0/2)
@@ -96,7 +96,7 @@ def generate_newcolorimg_by_padding(img, newh, neww):
         top_pad = np.zeros((h1, neww, c), dtype=np.uint8)
         bottom_pad = np.zeros((h0 - h1, neww, 3), dtype=np.uint8)
         newimg = np.concatenate((top_pad, newimg, bottom_pad), axis=0)
-    # print "new size:",newimg.shape[0:2]
+    # print("new size:",newimg.shape[0:2])
     return newimg
 
 
@@ -163,7 +163,7 @@ def cal_segment_area(mask):
 
 def flood_filling(mask1):
     ####################################### filling color ##########################
-    # print "\tfilling Colour"
+    # print("\tfilling Colour")
     h, w = mask1.shape
     ival=val = 3
     mask1 = padding2D_zero(mask1, ival)

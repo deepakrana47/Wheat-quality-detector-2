@@ -64,7 +64,7 @@ def get_files(indir):
     return files
 
 def make_sets(inputs, out, percent):
-    if len(inputs) != len(out): print "Error input size not equal to output size !!!"
+    if len(inputs) != len(out): print("Error input size not equal to output size !!!")
     x_train = []
     y_train = []
     x_test = []
@@ -92,9 +92,9 @@ if __name__ == "__main__":
     x_train, y_train, x_test, y_test = make_sets(Grain, out, 0.3)
 
 
-    print "Number of one grain sample:", len(oneGrain_list)
-    print "Number of more grain sample:",len(moreGrain_list)
-    print "Total of sample:",len(Grain)
+    print("Number of one grain sample:", len(oneGrain_list))
+    print("Number of more grain sample:",len(moreGrain_list))
+    print("Total of sample:",len(Grain))
 
     from util import get_boundry_img_matrix
     # extracting features of grains
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     # print
 
     # MLP
-    print "Trainning linear mlp..."
+    print("Trainning linear mlp...")
     x_train = np.array(x_train).reshape((len(x_train), x_train[0].shape[0], x_train[0].shape[1], 1))
     x_test = np.array(x_test).reshape((len(x_test), x_test[0].shape[0], x_test[0].shape[1], 1))
     model = train(np.array(x_train),  np.array(y_train))
@@ -133,4 +133,4 @@ if __name__ == "__main__":
     print('cnn Test accuracy:', score[1])
     model_file = 'segmentation_data/weights_'+str(x_train[0].shape[0])+"_"+str(x_train[0].shape[1])+'_.h5'
     save_model(model, model_file)
-    print "weight file is saved."
+    print("weight file is saved.")

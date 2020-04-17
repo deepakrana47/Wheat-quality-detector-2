@@ -34,13 +34,13 @@ def segment_image4(img_file, dlog=0):
     h, w = org.shape[:2]
 
     img=org.copy()
-    # print "Reading ",time.time()-t0
+    # print("Reading ",time.time()-t0)
     t0 = time.time()
     
     # removing noise by using Non-local Means Denoising algorithm
     img = cv2.fastNlMeansDenoisingColored(img,None,10,10,7,21)
     # cv2.imshow('cleaned',img)
-    # print "noise removing ",time.time()-t0
+    # print("noise removing ",time.time()-t0)
     t0 = time.time()
 
     # Taking the red component out of RBG image as it is less effected by shadow of grain or impurity
@@ -49,33 +49,33 @@ def segment_image4(img_file, dlog=0):
 
     # calculating threshold value by using otsu thresholding
     T = otsu_threshold(gray=gray)
-    # print "threshold calc ",time.time()-t0
+    # print("threshold calc ",time.time()-t0)
     t0 = time.time()
 
     # incresing contrast about the threshold
     # gray = np.array([[max(pixel - 25, 0) if pixel < T else min(pixel + 25, 255) for pixel in row] for row in gray], dtype=np.uint8)
     # cv2.imshow('contrast',gray)
-    # print "Increasing contrast ",time.time()-t0
+    # print("Increasing contrast ",time.time()-t0)
     # t0 = time.time()
 
     # generating a threshold image
     thresh = np.array([[0 if pixel<T else 255 for pixel in row]for row in gray], dtype=np.uint8)
     # cv2.imshow('Threshold',thresh)
-    # print "Generating Threshold ",time.time()-t0
+    # print("Generating Threshold ",time.time()-t0)
     t0 = time.time()
 
     ########################## 1st level of segmentation ########################################
-    # print " Level 1 segmentation"
+    # print(" Level 1 segmentation")
 
     # generating a mask using 8-connected component method on threshold image
     mask = get_8connected_v2(thresh, mcount=5)
     # display_mask("Initial mask",mask)
-    # print "Mask Generation ",time.time()-t0
+    # print("Mask Generation ",time.time()-t0)
     t0 = time.time()
 
     # Calcutaing the grain segment using mask image
     s = cal_segment_area(mask)
-    # print "Calculating segment ends",time.time()-t0
+    # print("Calculating segment ends",time.time()-t0)
     t0 = time.time()
 
     # cv2.waitKey()
@@ -94,14 +94,14 @@ def segment_image4(img_file, dlog=0):
             s1count += 1
             # if dlog == 1: rm_detail.write(str(rm)+'\n')
             # cv2.imwrite('/media/zero/41FF48D81730BD9B/kisannetwork/removed/'+img_file.split('/')[-1].split(['.'])[0]+'_l1_'+str(s1count), get_img_value_inRange(org, mask, i, s[i]))
-    print "\n\t%d Number of segment rejected out of %d in L1 segmentation"%(s1count, total)
+    print("\n\t%d Number of segment rejected out of %d in L1 segmentation"%(s1count, total))
     if dlog == 1: rm_detail.write("\n\t%d Number of segment rejected out of %d in L1 segmentation\n"%(s1count, total))
-    # print " Level 1 segmentation Finished",time.time()-t0
+    # print(" Level 1 segmentation Finished",time.time()-t0)
     t0 = time.time()
     ####################### 1st level of segmentation Finished ##################################
 
     ####################### 2nd level of segmentation ###########################################
-    # print "\t Level 2 segmentation"
+    # print("\t Level 2 segmentation")
     # print s
     new_s = {}
 
@@ -111,7 +111,7 @@ def segment_image4(img_file, dlog=0):
 
     segments = {}
     s2count = extra = 0
-    print "Level 2 seg. start", time.time() - t0
+    print("Level 2 seg. start", time.time() - t0)
     t0 = time.time()
     for sindex in s_range:
         s1 = {}
@@ -154,12 +154,12 @@ def segment_image4(img_file, dlog=0):
         max_index = max([max_index]+list(new_s))
         ###################################################################################
 
-    print "2nd Level of segmentation Finished",time.time()-t0
+    print("2nd Level of segmentation Finished",time.time()-t0)
     # t0 = time.time()
     #####################2nd level of segmentation Finished ###################################
-    print "\tIn level 2 segmentation %d rejected"%(s2count)
-    print "\tTotal number of segments %d"%(total)
-    print "\tNumber of rejected segments %d"%(s1count+s2count)
+    print("\tIn level 2 segmentation %d rejected"%(s2count))
+    print("\tTotal number of segments %d"%(total))
+    print("\tNumber of rejected segments %d"%(s1count+s2count))
     # print
     if dlog == 1: rm_detail.write("\tIn level 2 segmentation %d rejected\n\tTotal number of segments %d\n\tNumber of rejected segments %d\n"%(s2count,total,s1count+s2count))
 

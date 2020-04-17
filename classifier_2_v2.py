@@ -9,7 +9,7 @@ from PCA import pca
 from util import get_boundry_img_matrix, get_files
 
 def make_sets(inputs, out, percent):
-    if len(inputs) != len(out): print "Error input size not equal to output size !!!"
+    if len(inputs) != len(out): print("Error input size not equal to output size !!!")
     x_train = []
     y_train = []
     x_test = []
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # extracting features of grains
     feat_data = result_dir + 'grain_feature.pkl'
     if os.path.isfile(feat_data):
-        ftrain, y_train, ftest, y_test = pickle.load(open(feat_data, 'rb'))
+        ftrain, y_train, ftest, y_test = pickle.load(open(feat_data, 'rb'), encoding="bytes")
     else:
         grain_particles = {
                             'damaged_grain' : data_dir + 'damaged_grain',
@@ -122,21 +122,21 @@ if __name__ == "__main__":
             ftest.append(l)
         pickle.dump([ftrain, y_train, ftest, y_test], open(result_dir + 'grain_feature.pkl', 'wb'))
 
-    print "Total of sample for training :", len(ftrain)
-    print "Total of sample for testing :", len(ftest)
+    print("Total of sample for training :", len(ftrain))
+    print("Total of sample for testing :", len(ftest))
 
     # MLP
     fd = open(result_dir + 'Test_results.txt','a')
     # m = [MEAN_AREA, PERIMETER, R, B, G]
     # n = [[EIGEN_VALUE_1, EIGEN_VALUE_2], [ECCENTRICITY], [NUMBER_GRAIN]]
-    print "Trainning linear MLP..."
+    print("Trainning linear MLP...")
     # allComb = [list(j) for i in range(1,len(n)+1) for j in itertools.combinations(n, i)]
     allComb = [[MEAN_AREA, PERIMETER, R, B, G, EIGEN_VALUE_1, EIGEN_VALUE_2, ECCENTRICITY]]
     for feat in allComb:
         # print n, np.array(ftrain)[:, n].shape
         # feat = [i for i in m]
         # for i in n: feat += i
-        print 'Paremeters :', [features[i] for i in feat]," ##### Number of classes :", [i for i in grain_class]
+        print('Paremeters :', [features[i] for i in feat]," ##### Number of classes :", [i for i in grain_class])
         modleFile = result_dir + 'weights_'+''.join([str(i) for i in feat])+'.h5'
         if os.path.isfile(modleFile):
             model = keras.models.load_model(modleFile)

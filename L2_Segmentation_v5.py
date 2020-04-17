@@ -69,26 +69,26 @@ def L2_segmentation_2(iimg , T, index):
 
     sober = sober_operation(gray)
     # cv2.imshow('sober', sober)
-    # print "\tsober operation", time.time() - t0
+    # print("\tsober operation", time.time() - t0)
     # t0 = time.time()
 
     sober = cv2.fastNlMeansDenoising(sober, None, h=2, templateWindowSize=3, searchWindowSize=5)
     # cv2.imshow('sober cleaned', sober)
-    # print "\tnoise operation", time.time() - t0
+    # print("\tnoise operation", time.time() - t0)
     # t0 = time.time()
 
     T= otsu_threshold(sober)
-    # print "\tsober threshold", time.time() - t0
+    # print("\tsober threshold", time.time() - t0)
     # t0 = time.time()
 
     sthresh = np.array([[0 if pixel < T else 255 for pixel in row] for row in sober], dtype=np.uint8)
     # cv2.imshow('sober Threshold', sthresh)
-    # print "\tcalc threshold", time.time() - t0
+    # print("\tcalc threshold", time.time() - t0)
     # t0 = time.time()
 
     diluted = cv2.dilate(sthresh, kernel=np.ones((5,5), np.uint8), iterations=1)
     # cv2.imshow('dilutated2 ', diluted)
-    # print "\tdilation operation", time.time() - t0
+    # print("\tdilation operation", time.time() - t0)
     # t0 = time.time()
 
     thresh2 = np.where((thresh == 0) * (diluted == 255), 0, thresh-diluted)
@@ -96,12 +96,12 @@ def L2_segmentation_2(iimg , T, index):
 
     mask = get_8connected_v2(thresh=thresh2, mcount=index)
     # display_mask("Diluted mask", mask)
-    # print "\tmask foamation", time.time() - t0
+    # print("\tmask foamation", time.time() - t0)
     # t0 = time.time()
 
     # Calcutaing the grain segment using mask image
     s = cal_segment_area(mask)
-    # print "\tcalc area seg", time.time() - t0
+    # print("\tcalc area seg", time.time() - t0)
     # t0 = time.time()
 
     rmcount = 0
@@ -118,34 +118,34 @@ def L2_segmentation_2(iimg , T, index):
     if len(s) < 2:
         # print
         return None
-    # print "\tselecting area", time.time() - t0
+    # print("\tselecting area", time.time() - t0)
     # t0 = time.time()
 
     # removing unwanted masks
     mask = np.array([[0 if pixel not in s else pixel for pixel in row] for row in mask])
-    # print "\tremoving unwanted mask opeation", time.time() - t0
+    # print("\tremoving unwanted mask opeation", time.time() - t0)
     # t0 = time.time()
 
     # Adding boundry mask
     boundry = get_boundry_img_matrix(thresh, 1)
-    # print "\tgetting boundry", time.time() - t0
+    # print("\tgetting boundry", time.time() - t0)
     # t0 = time.time()
 
     mask = np.where(boundry == 1, 1, mask)
-    # print "\tadding boundry to mask opeation", time.time() - t0
+    # print("\tadding boundry to mask opeation", time.time() - t0)
     # t0 = time.time()
 
     # display_mask('boundried mask', mask)
 
     # using mask fill the mask values in boundry
     mask = flood_filling(mask)
-    # print "\tflood filling opeation", time.time() - t0
+    # print("\tflood filling opeation", time.time() - t0)
     # t0 = time.time()
     # display_mask('flood fill', mask)
 
     # replace boundry by respective mask value
     mask = boundry_fill(mask)
-    # print "\tfilling opeation", time.time() - t0
+    # print("\tfilling opeation", time.time() - t0)
     # t0 = time.time()
     # cv2.waitKey()
 
@@ -160,7 +160,7 @@ def L2_segmentation_2(iimg , T, index):
         # cv2.imshow("img %d" % (ii), img)
         coff = elliptic_fourier_descriptors(points,order=5)
         if coff is None:
-            print "Ellipsis not work"
+            print("Ellipsis not work")
             return None
         x, y = np.int0(efd(coff, contour_1=points, locus=np.mean(points, axis=0)))
         boundry = make_border(zip(x,y), img.shape, bval=255)
@@ -168,7 +168,7 @@ def L2_segmentation_2(iimg , T, index):
         mask1 = mask_by_border(boundry, ii)
         # display_mask("mask %d" % (ii), mask1)
         masks.append(mask1)
-    # print "\telliptical fitting operation", time.time() - t0,'\n'
+    # print("\telliptical fitting operation", time.time() - t0,'\n')
 
     # cv2.waitKey()
     # cv2.destroyAllWindows()
