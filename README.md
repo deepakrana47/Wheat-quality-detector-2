@@ -14,7 +14,9 @@ In the wheat quality detection test we already segmented the wheat grains out of
 
 The dataset is already preprocessed through programming and manually. These five classes of wheat grains are than used for feature extraction process. The feature extraction process takes the wheat grain as input and return features as output. The outputed features the used by classification to classify the partical into one of the above class.
 
-The classifier is written in python, to run the codes python 2.7 and following packages are to be installed:
+The classifier is written in python, to run the codes python 3.5.2 and following packages are to be installed:
+
+> python 3.5.2
 
 > Keras==2.3.1
 
