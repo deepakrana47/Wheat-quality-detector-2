@@ -48,11 +48,11 @@ Output
 
 > Level 1 segmentation Finished:
 
->	Rejected segment: 1
+>	    Rejected segment: 1
 
 > Level 2 segmentation Finished:
 
->	Rejected segment: 21
+>	    Rejected segment: 21
 
 
 > Total number of segments 124
