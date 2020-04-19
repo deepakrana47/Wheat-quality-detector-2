@@ -1,0 +1,5 @@
+Keras==2.3.1
+matplotlib==3.0.3
+numpy==1.18.2
+opencv-python==4.2.0.34
+tensorflow-cpu==2.1.0

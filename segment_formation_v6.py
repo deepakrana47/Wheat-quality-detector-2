@@ -1,19 +1,21 @@
-import warnings
+# import warnings
 # warnings.filterwarnings("ignore", message="numpy.dtype size changed")
-# warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
-warnings.simplefilter("ignore", DeprecationWarning)
+# warnings.simplefilter("ignore", DeprecationWarning)
+
+from tensorflow import keras
 
 from threshold import otsu_threshold
-from Area import areaThreshold_by_havg#, areaThreshold_by_avg
+from Area import areaThreshold_by_havg
 from _8connected import get_8connected_v2
-import keras
-from util import *
+from util_ import *
 from L2_Segmentation_v5 import L2_segmentation_2
 import time
 
 mFile = 'segmentation_data/weights_30_30_.h5'
 model = keras.models.load_model(mFile)
+model.summary()
 rm_detail = open('log.txt', 'a')
+
 
 def isMoregrain(iimg, T):
     iimg = generate_newcolorimg_by_padding(iimg, 30, 30)[:, :, 2]
@@ -102,7 +104,7 @@ def segment_image4(img_file, dlog=0):
 
     ####################### 2nd level of segmentation ###########################################
     # print("\t Level 2 segmentation")
-    # print s
+    # print(s)
     new_s = {}
 
     s_range = [i for i in s]
@@ -185,10 +187,10 @@ def segment_image4(img_file, dlog=0):
 #     ]
 #     count = 0
 #     for img in img_files:
-#         print img
+#         print(img)
 #         seg, s, imgRectangled, mask1 = segment_image4(img)
-#         print s
-#         print len(seg)
+#         print(s)
+#         print(len(seg))
 #         if not seg: continue
 #         iimg = cv2.imread(img, cv2.IMREAD_COLOR)
 #         # for i in s:

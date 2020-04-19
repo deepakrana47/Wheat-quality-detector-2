@@ -1,5 +1,5 @@
 import cv2
-from util import *
+from util_ import *
 import warnings, traceback
 warnings.filterwarnings("error")
 
@@ -112,19 +112,19 @@ def efd(coeffs,contour_1,  locus=(0., 0.)):
 #     # ctop.append((t1*t2)**2 * (np.sum(k[i:i+s]) if i+s < llen else np.sum(k[i:llen])+np.sum(k[:llen-i+s])))
 #
 # for i in range(len(boundry)):
-#     print (x[i], y[i]), boundry[i], k[i]
+#     print((x[i], y[i]), boundry[i], k[i])
 #
 # img1 = np.zeros((h,w,3), dtype=np.uint8)
 # img2 = np.zeros((h,w,3), dtype=np.uint8)
 #
-# print h,w
+# print(h,w)
 # dline = []
 # for i in range(len(boundry)):
 #     if abs(k[i]) < 0.2:
 #         img1[boundry[i][0],boundry[i][1]] = [255,255,255]
 #         img2[x[i], y[i]] = [255,255,255]
 #     else:
-#         # print (x[i], y[i]), boundry[i], k[i], ctop[i]
+#         # print((x[i], y[i]), boundry[i], k[i], ctop[i])
 #         img1[boundry[i][0],boundry[i][1]] = [0,0,255]
 #         img2[x[i], y[i]] = [0, 0, 255]
 #         dline.append([x[i], y[i]])
@@ -147,7 +147,7 @@ def efd(coeffs,contour_1,  locus=(0., 0.)):
 # ls = []
 # np.fill_diagonal(ddist, np.inf)
 #
-# # print ddist
+# # print(ddist)
 # for i in range(len(ddline)/2):
 #     dmin = np.unravel_index(np.argmin(ddist), ddist.shape)
 #     ls.append(dmin)

@@ -6,7 +6,7 @@ warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 import cv2, numpy as np, random, os, pickle, keras, itertools
 from mlp import train
 from PCA import pca
-from util import get_boundry_img_matrix, get_files
+from util_ import get_boundry_img_matrix, get_files
 
 def make_sets(inputs, out, percent):
     if len(inputs) != len(out): print("Error input size not equal to output size !!!")
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     # allComb = [list(j) for i in range(1,len(n)+1) for j in itertools.combinations(n, i)]
     allComb = [[MEAN_AREA, PERIMETER, R, B, G, EIGEN_VALUE_1, EIGEN_VALUE_2, ECCENTRICITY]]
     for feat in allComb:
-        # print n, np.array(ftrain)[:, n].shape
+        # print(n, np.array(ftrain)[:, n].shape)
         # feat = [i for i in m]
         # for i in n: feat += i
         print('Paremeters :', [features[i] for i in feat]," ##### Number of classes :", [i for i in grain_class])

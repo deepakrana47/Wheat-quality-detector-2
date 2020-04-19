@@ -1,6 +1,6 @@
 import numpy as np, cv2
 
-from util import *
+from util_ import *
 
 def get_equiv(equivlence, labels, mcount):
     for i in reversed(sorted(list(equivlence))):
@@ -59,8 +59,8 @@ def get_8connected_v2(thresh, mcount=5):
                     else:
                         equivlence[labels[0]] = labels[1:]
     image_label = remove_padding2D_zero(image_label,1)
-    # print equivlence
-    # print out_labels
+    # print(equivlence)
+    # print(out_labels)
     # display_mask('image label',image_label)
     # raw_input()
     seg = get_equiv(equivlence, out_labels, mcount)
@@ -69,7 +69,7 @@ def get_8connected_v2(thresh, mcount=5):
         for j in range(w):
             if image_label[i, j]:
                 image_label[i, j] = seg[image_label[i, j]]
-    # print seg
+    # print(seg)
     return image_label
 ########################################################################################
 

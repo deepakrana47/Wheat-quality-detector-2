@@ -2,7 +2,7 @@ import cv2, numpy as np
 from Area import areaThreshold_by_havg, areaThreshold_by_top
 from threshold import otsu_threshold
 from _8connected import get_8connected_v2
-from util import *
+from util_ import *
 import warnings
 import traceback
 from eclipes_test import elliptic_fourier_descriptors, efd
@@ -33,9 +33,11 @@ def make_border(points, shape, bval=255):
             i+=1
             x,y = points[i]
         elif abs(points[i+1][0] - x) > 1:
-            x ,y = (x + (points[i+1][0] - x)/abs(points[i+1][0] - x)), y
+            x ,y = int(x + (points[i+1][0] - x)/abs(points[i+1][0] - x)), y
+            # x ,y = int(x + 1), y
         elif abs(points[i+1][1] - y) > 1:
-            x ,y = x, (y + (points[i+1][1] - y)/abs(points[i+1][1] - y))
+            x ,y = x, int(y + (points[i+1][1] - y)/abs(points[i+1][1] - y))
+            # x ,y = x, int(y + 1)
     # boundry = remove_padding2D_zero(boundry, 2)
     return boundry
 
@@ -163,7 +165,10 @@ def L2_segmentation_2(iimg , T, index):
             print("Ellipsis not work")
             return None
         x, y = np.int0(efd(coff, contour_1=points, locus=np.mean(points, axis=0)))
-        boundry = make_border(zip(x,y), img.shape, bval=255)
+
+        coordinates = [(x[i], y[i]) for i in range(len(x))]
+
+        boundry = make_border(coordinates, img.shape, bval=255)
         # cv2.imshow("border %d"%(ii), boundry)
         mask1 = mask_by_border(boundry, ii)
         # display_mask("mask %d" % (ii), mask1)

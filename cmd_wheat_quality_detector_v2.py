@@ -1,23 +1,21 @@
 ## this file contain code for binary classification i.e. good or not good grain
 
-import warnings
-warnings.filterwarnings("ignore", message="numpy.dtype size changed")
-warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+import numpy as np, cv2
+from tensorflow import keras
 
-from util import display_mask, get_boundry_img_matrix
+from util_ import display_mask, get_boundry_img_matrix
 from PCA import pca
-import numpy as np, keras, cv2
 from segment_formation_v6 import segment_image4
 
 if __name__ == "__main__":
     color = {i: np.random.randint(20, 255, 3) for i in range(5, 5000)}
     color[1] = [255, 255, 255]
     color[2] = [0, 0, 255]
-    imgFile =  input("Enter the file(wheat image) location to dectect : ")
-    # imgFile = 'test.jpg'
+    # imgFile =  input("Enter the file(wheat image) location to dectect : ")
+    imgFile = 'test_2.jpg'
     count = 1
 
-    model = keras.models.load_model('weights_results_2out/weights_01234567.pkl')
+    model = keras.models.load_model('weights_results_2out/weights_01234567.h5')
 
     # for imgFile in imgFile:
     print("Segmentation in process...")
@@ -71,6 +69,6 @@ if __name__ == "__main__":
     maskFile = 'mask_'+imgFile.split('/')[-1]
     outFile = 'result_'+imgFile.split('/')[-1]
     cv2.imwrite(outFile, rect)
-    display_mask('mask',mask,sname=maskFile)
-    cv2.waitKey(0)
+    # display_mask('mask',mask,sname=maskFile)
+    # cv2.waitKey(0)
     count+=1
