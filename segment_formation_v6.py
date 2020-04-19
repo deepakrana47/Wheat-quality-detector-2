@@ -13,7 +13,7 @@ import time
 
 mFile = 'segmentation_data/weights_30_30_.h5'
 model = keras.models.load_model(mFile)
-model.summary()
+# model.summary()
 rm_detail = open('log.txt', 'a')
 
 
@@ -96,7 +96,9 @@ def segment_image4(img_file, dlog=0):
             s1count += 1
             # if dlog == 1: rm_detail.write(str(rm)+'\n')
             # cv2.imwrite('/media/zero/41FF48D81730BD9B/kisannetwork/removed/'+img_file.split('/')[-1].split(['.'])[0]+'_l1_'+str(s1count), get_img_value_inRange(org, mask, i, s[i]))
-    print("\n\t%d Number of segment rejected out of %d in L1 segmentation"%(s1count, total))
+    print("Level 1 segmentation Finished:")
+    print("\tRejected segment: %d" % (s1count))
+
     if dlog == 1: rm_detail.write("\n\t%d Number of segment rejected out of %d in L1 segmentation\n"%(s1count, total))
     # print(" Level 1 segmentation Finished",time.time()-t0)
     t0 = time.time()
@@ -113,7 +115,7 @@ def segment_image4(img_file, dlog=0):
 
     segments = {}
     s2count = extra = 0
-    print("Level 2 seg. start", time.time() - t0)
+    # print("Level 2 seg. start", time.time() - t0)
     t0 = time.time()
     for sindex in s_range:
         s1 = {}
@@ -156,12 +158,12 @@ def segment_image4(img_file, dlog=0):
         max_index = max([max_index]+list(new_s))
         ###################################################################################
 
-    print("2nd Level of segmentation Finished",time.time()-t0)
+    print("\nLevel 2 segmentation Finished:")
+    print("\tRejected segment: %d" % (s2count))
     # t0 = time.time()
     #####################2nd level of segmentation Finished ###################################
-    print("\tIn level 2 segmentation %d rejected"%(s2count))
-    print("\tTotal number of segments %d"%(total))
-    print("\tNumber of rejected segments %d"%(s1count+s2count))
+    print("\n\nTotal number of segments %d"%(total))
+    print("Number of rejected segments %d\n\n"%(s1count+s2count))
     # print
     if dlog == 1: rm_detail.write("\tIn level 2 segmentation %d rejected\n\tTotal number of segments %d\n\tNumber of rejected segments %d\n"%(s2count,total,s1count+s2count))
 

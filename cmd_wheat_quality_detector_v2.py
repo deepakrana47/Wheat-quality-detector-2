@@ -11,8 +11,8 @@ if __name__ == "__main__":
     color = {i: np.random.randint(20, 255, 3) for i in range(5, 5000)}
     color[1] = [255, 255, 255]
     color[2] = [0, 0, 255]
-    # imgFile =  input("Enter the file(wheat image) location to dectect : ")
-    imgFile = 'test_2.jpg'
+    imgFile =  input("\n\nEnter the file(wheat image) location to dectect : ")
+    # imgFile = 'test_2.jpg'
     count = 1
 
     model = keras.models.load_model('weights_results_2out/weights_01234567.h5')
@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
 
     features = {}
-    print("Feature extraction in process...")
+    print("\n\nFeature extraction in process...")
     for gi in segments:
         gcolor = segments[gi]
         h, w, _ = gcolor.shape
@@ -59,7 +59,7 @@ if __name__ == "__main__":
         else:
             not_good+=1
             rect = cv2.rectangle(rect, (s[2], s[0]), (s[3], s[1]), (0, 0, 255), 3)
-    print("Number of good grain :", good)
+    print("\n\nNumber of good grain :", good)
     print("Number Not good grain or imputity:", not_good)
 
     font = cv2.FONT_HERSHEY_SIMPLEX

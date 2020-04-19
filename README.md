@@ -16,11 +16,15 @@ The dataset is already preprocessed through programming and manually. These five
 
 The classifier is written in python, to run the codes python 2.7 and following packages are to be installed:
 
-> numpy==1.15.4
+> Keras==2.3.1
 
-> opencv==3.4.0.12
+> matplotlib==3.0.3
 
-> Keras==2.1.2
+> numpy==1.18.2
+
+> opencv-python==4.2.0.34
+
+> tensorflow-cpu==2.1.0
 
 There are two classifier are provided:
 
@@ -40,30 +44,31 @@ To test quality detection:
 
 Output
 
-> Enter the file(wheat image) location to dectect : test.jpg
+> Enter the file(wheat image) location to dectect : test_2.jpg
 
-> Segmentation in process...
+> Level 1 segmentation Finished:
 
->	0 Number of segment rejected out of 204 in L1 segmentation
+>	Rejected segment: 1
 
-> Level 2 seg. start 1.50203704834e-05
+> Level 2 segmentation Finished:
 
-> 2nd Level of segmentation Finished 61.4671521187
+>	Rejected segment: 21
 
-> 	In level 2 segmentation 24 rejected
 
-> 	Total number of segments 257
+> Total number of segments 124
 
-> 	Number of rejected segments 24
+> Number of rejected segments 22
+
 
 > Segmentation in Complete.
 
+
 > Feature extraction in process...
 
-> Featur extraction in complete.
+> Feature extraction in complete.
 
-> Key Error
 
-> Number of good grain : 183
+> Number of good grain : 84
 
-> Number Not good grain or imputity: 49
+> Number Not good grain or imputity: 18
+
