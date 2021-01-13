@@ -24,21 +24,21 @@ Tested with **python3.5**
 
 A Glance
 --------
-.. code-block:: pycon
+For two class classification:
 
      $ python classifier_2_v2.py
      68/68 [==============================] - 0s 499us/step - accuracy: 0.9020 - loss: 0.2475
      MLP Test loss: 0.247524231672287
      MLP Test accuracy: 0.9019879698753357
 
-.. code-block:: pycon
+For five class classification:
 
      $ python classifier_5_v2.py
      65/65 [==============================] - 0s 532us/step - loss: 0.4837 - accuracy: 0.8254
      MLP Test loss: 0.483661413192749
      MLP Test accuracy: 0.8253890872001648
 
-.. code-block:: pycon
+For performing a saimple test:
 
      $ python cmd_wheat_quality_detector_v2.py
      Enter the file(wheat image) location to dectect : test_2.jpg
