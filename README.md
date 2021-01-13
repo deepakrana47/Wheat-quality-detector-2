@@ -1,76 +1,65 @@
-# Wheat-quality-detector-2
+Wheat-quality-detector-2
+========================
+Inspired by [link](https://github.com/dhishku/Machine-Learning-for-Grain-Assaying)
 
-In the wheat quality detection test we already segmented the wheat grains out of dataset provided in form of images containing multiple wheat grain in one picture by(https://github.com/dhishku/Machine-Learning-for-Grain-Assaying). The extracted wheat grains and other particals are than divided in five classes as follows:
+Description:
+-----------
 
->> Grain :- Contains the healthy wheat grains.
+This wheat quality detection test we are using to identify the quality of given wheat grains image. The dataset we used is provided by [link](https://github.com/dhishku/Machine-Learning-for-Grain-Assaying). 
 
->> Damaged_grain :- Contain non healthy or deformed wheat grains. 
+The wheat quality detection problem is divided into two sub problems given as following:
+1. Two classs classification i.e. a healthy grain or other.
+2. Five class slassification i.e. a healthy grain, damaged grain, foreign partical, broken grain and grain cover.
 
->> Foreign :- Contain other partical then wheat grains
+The dataset we used for training (is the single grain or other images) extracted for above mentioned dataset.
 
->> Broken_grain :- Contain broken wheat grains.
+Requirement:
+-----------
+- opencv-python
+- keras
+- tensorflow
+- matplotlib
 
->> Grain_cover :- Contains the cover of wheat grains.
+Tested with **python3.5**
 
-The dataset is already preprocessed through programming and manually. These five classes of wheat grains are than used for feature extraction process. The feature extraction process takes the wheat grain as input and return features as output. The outputed features the used by classification to classify the partical into one of the above class.
+A Glance
+--------
+.. code-block:: pycon
 
-The classifier is written in python, to run the codes python 3.5.2 and following packages are to be installed:
+     $ python classifier_2_v2.py
+     68/68 [==============================] - 0s 499us/step - accuracy: 0.9020 - loss: 0.2475
+     MLP Test loss: 0.247524231672287
+     MLP Test accuracy: 0.9019879698753357
 
-> python 3.5.2
+.. code-block:: pycon
 
-> Keras==2.3.1
+     $ python classifier_5_v2.py
+     65/65 [==============================] - 0s 532us/step - loss: 0.4837 - accuracy: 0.8254
+     MLP Test loss: 0.483661413192749
+     MLP Test accuracy: 0.8253890872001648
 
-> matplotlib==3.0.3
+.. code-block:: pycon
 
-> numpy==1.18.2
+     $ python cmd_wheat_quality_detector_v2.py
+     Enter the file(wheat image) location to dectect : test_2.jpg
+     Segmentation in process...
+     Level 1 segmentation Finished:
+     Rejected segment: 1
+     Level 2 segmentation Finished:
+     Rejected segment: 21
 
-> opencv-python==4.2.0.34
+     Total number of segments 124
+     Number of rejected segments 22
 
-> tensorflow-cpu==2.1.0
+     Segmentation in Complete.
 
-There are two classifier are provided:
+     Feature extraction in process...
+     Feature extraction in complete.
 
-> classifier_2_v2.py : This classifier before classification divide dataset into 2 sets i.e. grain/not_grain, where grain contain 'Grain' class and not_grain contain all other class(Damaged_grain, Foreign, Broken_grain, Grain_cover) given above. 
+     Number of good grain : 84
+     Number Not good grain or imputity: 18
 
-> classifier_5_v2.py : This classifier before classification divides dataset into 5 sets i.e. the above given classes.
-
-To see classification results run the following:
-
-> $ python classifier_2_v2.py     or
-
-> $ python classifier_5_v2.py
-
-To test quality detection:
-
-> $ python cmd_wheat_quality_detector_v2.py
-
-Output
-
-> Enter the file(wheat image) location to dectect : test_2.jpg
-
-> Level 1 segmentation Finished:
-
->	    Rejected segment: 1
-
-> Level 2 segmentation Finished:
-
->	    Rejected segment: 21
-
-
-> Total number of segments 124
-
-> Number of rejected segments 22
-
-
-> Segmentation in Complete.
-
-
-> Feature extraction in process...
-
-> Feature extraction in complete.
-
-
-> Number of good grain : 84
-
-> Number Not good grain or imputity: 18
+About:
+----
+Please feel free to [email & contact me](mailto:deepaksinghrana049@gmail.com) if you run into issues or just would like to talk about the future usage.
 
